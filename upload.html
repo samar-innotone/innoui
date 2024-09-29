@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!-- {% load static %} -->
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Test Papers</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/upload.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="heading mt-5">
+        <h1>Let's Analyze</h1>
+    </div>
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" id="uploadForm">
+                    <!-- {% csrf_token %} -->
+                    <div class="mb-3">
+                        <!-- <img src="upload_icon.png" alt="Upload Icon" class="upload-icon mb-2"> -->
+                        <label for="fileInput" class="form-label">Upload Test Paper Photos or Take New Ones:</label><br>
+                        <div class="file-upload-area mb-3">
+                            <div class="file-upload" id="test-file-upload">
+                                <img src="upload_icon_1.png" alt="Upload Icon" class="upload-icon">
+                            </div>
+                            <div class="cam-upload" id="test-cam-upload">
+                                <img src="cam_icon_1.png" alt="Upload Icon" class="cam-upload-icon">
+                            </div>
+                            <input type="file" class="form-control" id="fileInput" name="test_papers" multiple accept="image/*" capture="environment">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="answerKeyInput" class="form-label">Upload Answer Keys:</label><br>
+                        <div class="file-upload-area mb-3">
+                            <div class="file-upload" id="answer-file-upload">
+                                <img src="upload_icon.png" alt="Upload Icon" class="upload-icon">
+                            </div>
+                            <div class="cam-upload" id="answer-cam-upload">
+                                <img src="cam_icon.png" alt="Upload Icon" class="cam-upload-icon">
+                            </div>
+                            <input type="file" class="form-control" id="answerKeyInput" name="answer_key" multiple accept="image/*" capture="environment">
+                        </div>
+                    </div>
+
+                    <!-- <div class="mb-3">
+                        <label for="answerKeyInput" class="form-label">Upload Answer Keys:</label>
+                        <input type="file" class="form-control" id="answerKeyInput" name="answer_key" multiple accept="image/*">
+                    </div>
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-secondary" id="cameraButton">
+                            <i class="fas fa-camera me-2"></i>Open Camera
+                        </button>
+                    </div> -->
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-upload me-2"></i>Upload and Analyze
+                    </button>
+
+                    <!-- <div class="upload-area custom-file-upload" id="file-upload-area"></div>
+                        <img src="fileupload.jpg" alt="Upload Icon" class="upload-icon mb-2">
+                        <label for="fileInput" class="form-label">Upload Test Paper Photos or Take New Ones:</label>
+                        <input type="file" class="form-control" id="fileInput" name="test_papers" multiple accept="image/*" capture="environment">
+                    </div>
+                    <div class="upload-area custom-file-upload" id="file-upload-area">
+                        <img src="fileupload.jpg" alt="Upload Icon" class="upload-icon mb-2">
+                        <label for="answerKeyInput" class="form-label">Upload Answer Keys:</label>
+                        <input type="file" class="form-control" id="answerKeyInput" name="answer_key" multiple accept="image/*">
+                    </div> -->
+                </form>
+            </div>
+        </div>
+        <div id="PreviewCard" class="PreviewCard">
+            <div class="image-container-heading">
+                <label class="upload-label">Uploaded Documents</label>
+            </div>
+            <div id="imagePreview" class="mb-3"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('test-file-upload').addEventListener('click', function () {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('test-cam-upload').addEventListener('click', function () {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('answer-file-upload').addEventListener('click', function () {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('answer-cam-upload').addEventListener('click', function () {
+            document.getElementById('fileInput').click();
+        });
+
+        let selectedFiles = [];
+
+        function handleFileInputChange(event) {
+            var preview = document.getElementById('imagePreview');
+
+            for (var i = 0; i < event.target.files.length; i++) {
+                var file = event.target.files[i];
+                if (!file.type.startsWith('image/')) { continue; }
+
+                selectedFiles.push(file);
+
+                var img = document.createElement('img');
+                img.classList.add('img-thumbnail', 'm-1');
+                img.file = file;
+
+                preview.appendChild(img);
+
+                var reader = new FileReader();
+                reader.onload = (function (aImg) {
+                    return function (e) {
+                        aImg.src = e.target.result;
+                    };
+                })(img);
+                reader.readAsDataURL(file);
+            }
+
+            const previewCard = document.querySelector(".PreviewCard");
+            previewCard.style.display = "block";
+            setTimeout(() => {
+                previewCard.classList.add("show");
+            }, 4);
+        }
+
+        document.getElementById('fileInput').addEventListener('change', handleFileInputChange);
+        document.getElementById('answerKeyInput').addEventListener('change', handleFileInputChange);
+
+
+
+        document.getElementById('cameraButton').addEventListener('click', function () {
+            document.getElementById('fileInput').click();
+        });
+
+        // Add responsive behavior for sidebar if needed
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar-wrapper');
+            sidebar.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>

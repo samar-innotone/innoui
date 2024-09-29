@@ -1,0 +1,819 @@
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 0;
+}
+
+h1 {
+    color: #444;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+div#questionsContainer {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 5px;
+    transition: all 0.3s ease;
+    border: 1px solid #ddd;
+}
+
+#questionsToggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4f4f4; /* Light gray background for the toggle strip */
+    padding: 10px; /* Add some padding around the buttons */
+    border-radius: 5px;
+}
+
+#questionsToggle button {
+    padding: 8px 15px;
+    background-color: #007bff; /* Blue background for buttons */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#questionsToggle button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.audio-animation {
+    animation: pulse 1s infinite;
+    cursor: pointer;
+    font-size: 24px; /* Adjust size as needed */
+}
+
+
+
+.collapsed #questionsContainer {
+    height: 0;
+    overflow: hidden;
+    padding: 0 10px;
+}
+
+
+
+.expanded #questionsContainer {
+    padding: 10px;
+    height: auto; /* Adjust as needed or use max-height for a transition effect */
+}
+
+
+#toggleText, #toggleIcon {
+    margin-right: 5px;
+    user-select: none; /* Prevent text selection */
+}
+
+
+select {
+    padding: 10px;
+    margin: 5px !important; /* Adds space above the dropdown */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+
+
+
+.question-item {
+    background-color: #f0f8ff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.question-text {
+    flex: 1;
+}
+
+.discuss-btn {
+    background-color: #add8e6;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.discuss-btn:hover {
+    background-color: #9acfea;
+}
+
+
+#chatInput {
+    width: 70%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#chatInterface button {
+    padding: 10px 15px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #add8e6;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#chatInterface button:hover {
+    background-color: #9acfea;
+}
+
+
+
+/* Style for the chat-message */
+.chat-message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    background-color: #e9e9e9; /* Light grey background for the message */
+}
+
+/* Add a style for the 'Discuss with Ri' button when it's hidden */
+.discuss-btn.hidden {
+    display: none;
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+#input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Adjust if needed */
+    width: 90%;
+    max-width: 750px;
+    margin: 30px 5px;
+    border: 2px solid #007BFF; /* Example border color */
+    border-radius: 50px;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    position: relative; /* Allows absolute positioning for children */
+    background-color: #fff;
+}
+
+#userInput {
+    flex-grow: 1;
+    padding: 8px 16px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    height: 5vh; /* Adjust height as needed */
+    border-radius: 50px;
+}
+
+.action-button {
+    cursor: pointer;
+    font-size: 24px; /* Adjust size as needed */
+}
+
+#sendButton {
+    background: none;
+    border: none;
+    margin-right: 10px; /* Give some space from the right edge */
+}
+
+#sendButton i.fa-paper-plane {
+    color: #555;
+    font-size: 3.5vh;
+}
+
+
+
+
+
+/*
+
+#input-container {
+    display: flex;
+    align-items: center;
+}
+
+#userInput {
+    width: 60%;
+    padding: 8px;
+
+}
+
+#sendButton {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+#sendButton i.fa-paper-plane {
+    color: #000;
+    font-size: 24px;
+}
+*/
+
+
+.voice-record-btn {
+    position: absolute;
+    margin-left: 1px; /* Adjust as needed to bring the button closer to the input box */
+    background-color: #fff; /* Or any color you prefer */
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: adds a subtle shadow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right:-6vh;
+}
+
+.voice-record-btn i {
+    color: #333; /* Or any color you prefer */
+    font-size: 4vh;
+}
+
+
+
+.voice-recording-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay-content {
+    position:fixed;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+    height: 40vh;
+    top: 30vh;
+    bottom: 30vh;
+    left: 10%;
+    right: 10%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.overlay-content h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.mic-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.mic-icon i {
+    font-size: 40px;
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 50%;
+    padding: 10px;
+    transition: transform 0.1s ease;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+
+
+
+@keyframes pulsate {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.pulsating {
+    animation: pulsate 1s infinite;
+}
+
+
+
+#recordingTimer {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+
+.overlay-content button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+}
+
+
+.overlay-content button.close-button {
+    position: absolute; /* Absolute positioning */
+    top: -10px; /* Distance from the top */
+    right: -10px; /* Distance from the right */
+    background-color: transparent; /* No background color */
+    border: none; /* No border */
+    font-size: 20px;
+    color: #000; /* Color of the 'X' (change as needed) */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+}
+
+
+.conversation-history .user-message {
+    background-color: #ffffff; /* Light grey background for user messages */
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.conversation-history .assistant-message {
+    background-color: #f5f5f5; /* Light blue background for assistant messages */
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+
+.sticky-strip {
+    height: 60px;  /* Adjust the height as per your requirement */
+    background-color: #333;  /* Adjust the color as per your requirement */
+    position: fixed;  /* Changed from sticky to fixed */
+    top: 0;
+    left: 0;  /* Ensures it starts from the left edge */
+    width: 100%;  /* Ensures it spans the entire viewport width */
+    z-index: 10;  /* To ensure it stays above other content */
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);  /* This will give the shadow effect */
+    display: flex;
+    /*justify-content: center;  This will horizontally center the child elements */
+    align-items: center;
+    justify-content: space-between; /* This will distribute the space between child elements */
+    padding-top: 0px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+
+}
+
+
+
+.sticky-strip .mode-strip {
+    display: flex;
+    justify-content: center;
+    flex: 1;  /* This will restrict the mode-strip to 50% of the parent's width */
+}
+
+
+.sticky-strip .switch {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+    height: 40px;
+    background-color: #E0E0E0;
+    border-radius: 20px;
+    padding: 5px;
+    margin-left: 0px;  /* Pulls the switch towards the center by half its width*/
+}
+
+
+/* Hide the actual checkbox input */
+.sticky-strip .switch input[type="checkbox"] {
+    display: none;
+}
+
+/* Styling for the sliding button */
+.sticky-strip .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    background-color: #4d70fc;
+    border-radius: 15px;
+    transition: .4s;
+    width: 170px;
+}
+
+/* Styling for the text "Doubt Mode" and "Learning Mode" */
+.sticky-strip .mode-text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.sticky-strip .doubt-mode-text {
+    left: 10px;
+    color: #4d70fc;  /* You might want to change this */
+    font-weight: bold;
+    font-size: 16px;  /* Adjust as necessary */
+}
+
+.sticky-strip .learning-mode-text {
+    right: 10px;
+    color: #4d70fc;  /* You might want to change this */
+    font-weight: bold;
+    font-size: 16px;  /* Adjust as necessary */
+}
+
+
+/* When the checkbox is checked, adjust the slider's position and color */
+.sticky-strip input[type="checkbox"]:checked + .slider {
+    left: 125px;
+    background-color: #4d70fc;
+}
+
+.sticky-strip input[type="checkbox"]:checked + .slider + .learning-mode-text {
+    color: white;
+}
+
+.sticky-strip input[type="checkbox"]:checked + .slider + .doubt-mode-text {
+    color: white;
+}
+
+
+.sticky-strip .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.sticky-strip .user-info p,
+.sticky-strip .user-info a {
+    margin: 0;
+    padding: 0 5px;
+    color: white;
+}
+
+.sticky-strip .feedback-button {
+    background-color: #4CAF50; /* green background */
+    border: none;
+    color: white; /* white text */
+    padding: 5px 10px;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition-duration: 0.4s; /* transition effect */
+}
+
+.sticky-strip .feedback-button a {
+    color: white;
+    text-decoration: none;
+}
+
+.sticky-strip .feedback-button:hover {
+    background-color: #45a049; /* dark green on hover */
+}
+
+.sticky-strip .btn-primary {
+    background-color: #4CAF50; /* green background */
+    border: none;
+    color: white; /* white text */
+    padding: 5px 10px;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition-duration: 0.4s; /* transition effect */
+}
+
+.sticky-strip .btn-primary a {
+    color: white;
+    text-decoration: none;
+}
+
+
+.hamburger {
+    cursor: pointer;
+    font-size: 1.5em; /* Adjust the size of the hamburger icon */
+    margin-right: 15px; /* Space between the hamburger and the next element */
+    color: #adb5bd;
+}
+
+
+
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+  background-color:#000000;
+  margin-left:-20px;
+  margin-top:-5px;
+  margin-bottom:-25px;
+
+
+}
+
+
+#sidebar-wrapper .sidebar-heading {
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+
+
+
+
+@media only screen and (max-width: 1200px) {
+    #sidebar-wrapper {
+        width: 35vh;
+        transform: translateX(-100%);
+        position: fixed;
+        left: 0;
+        transition: transform 0.3s ease;
+        background-color:#000000;
+        margin-left:0px;
+        padding-top:10px;
+
+
+    }
+
+    #sidebar-wrapper.active {
+        transform: translateX(0);
+    }
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 18px; /* Larger font size for mobile */
+        padding: 5px;
+    }
+
+    .question-item {
+        flex-direction: column; /* Stack the question and button */
+        align-items:center;
+    }
+
+    .discuss-btn {
+        padding: 10px 20px; /* Larger button for easier tapping */
+        width: 60%; /* Full width button */
+        margin-top: 10px; /* Space between question text and button */
+        margin-left:1px;
+    }
+
+    select {
+        margin-top: 10px; /* Space between dropdowns */
+        font-size: 1.2rem;
+    }
+
+
+
+    #questionsToggle button {
+    padding: 2px 1px;
+    background-color: #007bff; /* Blue background for buttons */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin:1px !important;
+    font-size:14px;
+}
+
+    /* Adjustments for sticky-strip and its children */
+    .sticky-strip {
+        padding: 1vw;  /* Relative to viewport width */
+    }
+
+    .sticky-strip .switch {
+        width: 50vw;  /* Relative to viewport width */
+        margin-top: 0; /* Center the switch */
+        margin-bottom: 0;
+        margin-right: 10px;
+        margin-left: auto;
+        padding: 1vh 0; /* Relative vertical padding */
+        height: 4.5vh;  /* Relative height */
+        position: relative;
+    }
+
+    .sticky-strip .mode-text {
+        font-size: 3vw;  /* Relative font size */
+        font-weight: bold;
+    }
+
+
+    .sticky-strip .slider {
+        position: absolute;
+        cursor: pointer;
+        width: 23vw;  /* Relative width */
+        top: 0.5vh; left: 0.5vw; right: 0.5vw; bottom: 0.5vh;  /* Relative position */
+    }
+    .sticky-strip input[type="checkbox"]:checked + .slider {
+        left: 26vw;  /* Adjust checked position */
+    }
+
+    .sticky-strip .user-info {
+        gap: 1vw;  /* Relative gap */
+    }
+
+    .sticky-strip .user-info p,
+    .sticky-strip .user-info a {
+        padding: 0 1vw;  /* Relative padding */
+        font-size: 2.5vw;  /* Relative font size */
+    }
+
+    .sticky-strip .feedback-button {
+        padding: 3vw 2vw;
+        font-size: 2vw;
+    }
+
+    .sticky-strip .btn-primary {
+        padding: 3vw 2vw;
+        font-size: 2vw;
+        margin-bottom: 0vw !important;
+    }
+
+
+
+
+
+}
+
+
+@media (max-width: 768px) {
+    #input-container {
+        display: flex;
+        align-items: center; /* Aligns children vertically in the center */
+        width: 85%;
+        padding: 0.5vh 0; /* Optional: Adds some vertical padding */
+
+
+    }
+
+    #userInput {
+        flex-grow: 1;
+        padding: 8px 16px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        height: 5vh; /* Adjust height as needed */
+        border-radius: 50px;
+        font-size: 0.9rem;
+    }
+
+
+
+    #sendButton {
+        right: 10px; /* Adjust button position on smaller screens */
+        font-size: 3.5vh;
+    }
+
+
+
+    .voice-record-btn {
+        position: absolute;
+        margin-left: 1px; /* Adjust as needed to bring the button closer to the input box */
+        background-color: #fff; /* Or any color you prefer */
+        border-radius: 50%;
+        padding: 8px;
+        cursor: pointer;
+        outline: none;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: adds a subtle shadow */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        right:-5.5vh;
+    }
+
+
+}
+
+
+@media only screen and (max-width: 600px) {
+
+
+    h1 {
+        font-size: 1.5rem; /* Smaller font size */
+    }
+
+    div#questionsContainer, #discussionContainer {
+        padding: 10px; /* Even smaller padding */
+    }
+
+    .discuss-btn, #sendButton, .voice-record-btn {
+        font-size: 0.9rem; /* Smaller font size */
+        padding: 6px 4px;
+
+    }
+
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    /* Adjust select dropdowns to full width */
+    select {
+        width: 95%;
+        font-size: 16px; /* Increase font size for readability */
+    }
+
+    /* Question item adjustments */
+    .question-item {
+        flex-direction: column; /* Stack elements */
+        margin-bottom: 10px;
+    }
+
+
+    /* Adjustments for conversation history */
+    .conversation-history .user-message,
+    .conversation-history .assistant-message {
+        font-size: 14px; /* Smaller font size for messages */
+    }
+
+
+    /* General adjustments for smaller text and elements */
+    h1, h2, .question-text, .chat-message, .overlay-content h2 {
+        font-size: 1rem; /* Smaller headings and text */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Add more styles as needed */

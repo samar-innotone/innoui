@@ -1,0 +1,231 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Responsive Typography */
+h1 {
+    font-size: calc(1.5rem + 1.5vw);
+}
+
+h2 {
+    font-size: calc(1.3rem + 0.6vw);
+}
+
+p {
+    font-size: calc(0.9rem + 0.3vw);
+}
+
+/* Sidebar Styles */
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+/* Page Content Styles */
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+.sticky-strip {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+/* Card Styles */
+.card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Chart Styles */
+.chart-container {
+    height: 50vw;
+    max-height: 400px;
+    margin-bottom: 30px;
+}
+
+/* Collapse Toggle Styles */
+.collapse-toggle {
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: calc(1rem + 0.3vw);
+    background-color: #343a40;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.collapse-toggle:hover {
+    background-color: #23272b;
+}
+
+.collapse-toggle::after {
+    content: '\25BC';
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.collapse-toggle.active::after {
+    transform: rotate(180deg);
+}
+
+.collapse-content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #2c3034;
+}
+
+/* Session List Styles */
+.session-list {
+    margin-top: 20px;
+}
+
+.session-item {
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2c3034;
+}
+
+.session-item:hover {
+    background-color: #343a40;
+    transform: translateX(5px);
+}
+
+.session-item.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.session-info {
+    flex-grow: 1;
+}
+
+.session-icon {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.session-item:hover .session-icon {
+    opacity: 1;
+}
+
+/* Upload Page Styles */
+#imagePreview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#imagePreview img {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: -100%;
+    }
+
+    #sidebar-wrapper.active {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 100%;
+    }
+
+    .sticky-strip {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .collapse-toggle {
+        font-size: 1rem;
+    }
+
+    .session-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .session-icon {
+        margin-top: 5px;
+    }
+}
+
+@media (min-width: 769px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+}
+
+/* Ensure form inputs and buttons are responsive */
+.form-control, .btn {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Make tables responsive */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure images don't overflow their containers */
+img {
+    max-width: 100%;
+    height: auto;
+}
