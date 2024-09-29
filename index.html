@@ -41,7 +41,7 @@
                                 <img src="upload_icon.png" alt="Upload Icon" class="upload-icon">
                             </div>
                             <div class="cam-upload" id="answer-cam-upload">
-                                <img src="cam_icon.png" alt="Upload Icon" class="cam-upload-icon">
+                                <img src="cam_icon_1.png" alt="Upload Icon" class="cam-upload-icon">
                             </div>
                             <input type="file" class="form-control" id="answerKeyInput" name="answer_key" multiple accept="image/*" capture="environment">
                         </div>
@@ -85,20 +85,24 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <script>
+        const fileInput = document.getElementById('fileInput');
         document.getElementById('test-file-upload').addEventListener('click', function () {
-            document.getElementById('fileInput').click();
+            fileInput.click();
         });
 
         document.getElementById('test-cam-upload').addEventListener('click', function () {
-            document.getElementById('fileInput').click();
+            fileInput.setAttribute('capture', 'environment');
+            fileInput.click();
         });
-
+        
+        const answerKeyInput = document.getElementById('answerKeyInput');
         document.getElementById('answer-file-upload').addEventListener('click', function () {
-            document.getElementById('fileInput').click();
+            answerKeyInput.click();
         });
 
         document.getElementById('answer-cam-upload').addEventListener('click', function () {
-            document.getElementById('fileInput').click();
+            answerKeyInput.setAttribute('capture', 'environment');
+            answerKeyInput.click();
         });
 
         let selectedFiles = [];
