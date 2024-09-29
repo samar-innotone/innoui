@@ -15,7 +15,7 @@
     <div class="heading mt-5">
         <h1>Let's Analyze</h1>
     </div>
-    <div class="container mt-3">
+    <div class="container mt-2">
         <div class="card">
             <div class="card-body">
                 <form method="post" enctype="multipart/form-data" id="uploadForm">
@@ -87,6 +87,7 @@
     <script>
         const fileInput = document.getElementById('fileInput');
         document.getElementById('test-file-upload').addEventListener('click', function () {
+            fileInput.removeAttribute('capture');
             fileInput.click();
         });
 
@@ -97,6 +98,7 @@
         
         const answerKeyInput = document.getElementById('answerKeyInput');
         document.getElementById('answer-file-upload').addEventListener('click', function () {
+            fileInput.removeAttribute('capture');
             answerKeyInput.click();
         });
 
