@@ -20,32 +20,59 @@
             <div class="card-body">
                 <form method="post" enctype="multipart/form-data" id="uploadForm">
                     <!-- {% csrf_token %} -->
-                    <div class="mb-3">
-                        <!-- <img src="upload_icon.png" alt="Upload Icon" class="upload-icon mb-2"> -->
-                        <label for="fileInput" class="form-label">Upload Test Paper Photos or Take New Ones:</label><br>
+                    <label for="fileInput" class="form-label">Choose File Type</label><br>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="fileType" id="radioTestPaper" value="test_papers" checked>
+                        <label class="form-check-label" for="radioTestPaper">
+                            Test Paper
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="fileType" id="radioAnswerKey" value="answer_key">
+                        <label class="form-check-label" for="radioAnswerKey">
+                            Answer Key
+                        </label>
+                    </div>
+                    <div class="mt-3">
+                        <div class="selected-key" id="selectedKey">Please select a file type</div>
+                        <div class="file-upload-area mb-3">
+                            <!-- File upload icon -->
+                            <div class="file-upload" id="file-upload-icon">
+                                <img src="attachment_icon.png" alt="Upload Icon" class="upload-icon">
+                            </div>
+                            <!-- Camera upload icon -->
+                            <div class="cam-upload" id="cam-upload-icon">
+                                <img src="cam_icon_1.png" alt="Camera Icon" class="upload-icon">
+                            </div>
+                        </div>
+                        <!-- Single input file that dynamically changes based on radio button -->
+                        <input type="file" id="fileInput" class="form-control" name="test_papers" multiple accept="image/*">
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label for="fileInput" class="form-label">Upload Documents</label><br>
                         <div class="file-upload-area mb-3">
                             <div class="file-upload" id="test-file-upload">
-                                <img src="upload_icon_1.png" alt="Upload Icon" class="upload-icon">
+                                <img src="upload_icon_2.png" alt="Upload Icon" class="upload-icon">
                             </div>
                             <div class="cam-upload" id="test-cam-upload">
                                 <img src="cam_icon_1.png" alt="Upload Icon" class="cam-upload-icon">
                             </div>
-                            <input type="file" class="form-control" id="fileInput" name="test_papers" multiple accept="image/*" capture="environment">
+                            <input type="file" class="form-control" id="fileInput" name="test_papers" multiple accept="image/*">
                         </div>
-                    </div>
+                    </div> -->
                     
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="answerKeyInput" class="form-label">Upload Answer Keys:</label><br>
                         <div class="file-upload-area mb-3">
                             <div class="file-upload" id="answer-file-upload">
-                                <img src="upload_icon_2.png" alt="Upload Icon" class="upload-icon">
+                                <img src="attachment_icon.png" alt="Upload Icon" class="upload-icon">
                             </div>
                             <div class="cam-upload" id="answer-cam-upload">
                                 <img src="cam_icon_1.png" alt="Upload Icon" class="cam-upload-icon">
                             </div>
                             <input type="file" class="form-control" id="answerKeyInput" name="answer_key" multiple accept="image/*" capture="environment">
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- <div class="mb-3">
                         <label for="answerKeyInput" class="form-label">Upload Answer Keys:</label>
@@ -56,8 +83,9 @@
                             <i class="fas fa-camera me-2"></i>Open Camera
                         </button>
                     </div> -->
+                    <label class="notelabel">NOTE: Please upload both the Test Paper and Answer Key</label>
                     <button type="submit" class="btn btn-success">
-                        <i class="fas fa-upload me-2"></i>Upload and Analyze
+                        <i class="fas me-2"></i>Analyze
                     </button>
 
                     <!-- <div class="upload-area custom-file-upload" id="file-upload-area"></div>
@@ -85,27 +113,63 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <script>
+        const radioTestPaper = document.getElementById('radioTestPaper');
+        const radioAnswerKey = document.getElementById('radioAnswerKey');
         const fileInput = document.getElementById('fileInput');
-        document.getElementById('test-file-upload').addEventListener('click', function () {
-            fileInput.removeAttribute('capture');
+        const fileUploadIcon = document.getElementById('file-upload-icon');
+        const camUploadIcon = document.getElementById('cam-upload-icon');
+        const selectedKeyDiv = document.getElementById('selectedKey');
+
+        // Function to update file input based on selected radio button
+        function updateFileInput() {
+        if (radioTestPaper.checked) {
+            fileInput.setAttribute('name', 'test_papers');  // Update name to 'test_papers'
+            selectedKeyDiv.innerText = 'Upload your Test Paper';  // Update displayed key
+        } else if (radioAnswerKey.checked) {
+            fileInput.setAttribute('name', 'answer_key');   // Update name to 'answer_key'
+            selectedKeyDiv.innerText = 'Upload your Answer Key';  // Update displayed key
+        }
+    }
+
+        // Initial update based on the default checked option
+        updateFileInput();
+
+        // Add event listeners to radio buttons to dynamically update the file input
+        radioTestPaper.addEventListener('change', updateFileInput);
+        radioAnswerKey.addEventListener('change', updateFileInput);
+
+        // Trigger file input when clicking on the upload icon
+        fileUploadIcon.addEventListener('click', function() {
+            fileInput.removeAttribute('capture');  // Disable camera for normal upload
             fileInput.click();
         });
 
-        document.getElementById('test-cam-upload').addEventListener('click', function () {
-            fileInput.setAttribute('capture', 'environment');
+        // Trigger file input with camera capture when clicking on the camera icon
+        camUploadIcon.addEventListener('click', function() {
+            fileInput.setAttribute('capture', 'environment');  // Enable camera for upload
             fileInput.click();
         });
+        // const fileInput = document.getElementById('fileInput');
+        // document.getElementById('test-file-upload').addEventListener('click', function () {
+        //     fileInput.removeAttribute('capture');
+        //     fileInput.click();
+        // });
+
+        // document.getElementById('test-cam-upload').addEventListener('click', function () {
+        //     fileInput.setAttribute('capture', 'environment');
+        //     fileInput.click();
+        // });
         
-        const answerKeyInput = document.getElementById('answerKeyInput');
-        document.getElementById('answer-file-upload').addEventListener('click', function () {
-            answerKeyInput.removeAttribute('capture');
-            answerKeyInput.click();
-        });
+        // const answerKeyInput = document.getElementById('answerKeyInput');
+        // document.getElementById('answer-file-upload').addEventListener('click', function () {
+        //     answerKeyInput.removeAttribute('capture');
+        //     answerKeyInput.click();
+        // });
 
-        document.getElementById('answer-cam-upload').addEventListener('click', function () {
-            answerKeyInput.setAttribute('capture', 'environment');
-            answerKeyInput.click();
-        });
+        // document.getElementById('answer-cam-upload').addEventListener('click', function () {
+        //     answerKeyInput.setAttribute('capture', 'environment');
+        //     answerKeyInput.click();
+        // });
 
         let selectedFiles = [];
 
