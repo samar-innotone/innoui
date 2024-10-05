@@ -22,7 +22,7 @@ body {
     align-items: center;
     justify-content: center;
     color: black;
-    padding: 5px 0px 5px 0px;
+    padding: 5px 0px 0px 0px;
     box-shadow: 2px 3px 3px 3px rgba(0, 0, 0, 0.3);
     /* background-color: rgba(0, 0, 0, 0.4); */
     background-color: rgba(180,183,174,255);
