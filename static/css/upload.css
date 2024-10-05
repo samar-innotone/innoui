@@ -88,66 +88,82 @@ input[type="file"] {
 }
 */
 
+.upload_div{
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    /* background-color: red; */
+}
+
+.tp_label{
+    margin: 10px 0px 10px 0px;
+    width: 100%;
+    /* display: flex; */
+    color: black;
+    text-align: center;
+    /* background-color: rgb(79, 174, 201); */
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
 .file-upload-area {
     width: 30%;
     height: 50px;
-    /* background-color: rgba(180,185,175,0.5); */
-    /* backdrop-filter: blur(3px); */
-    /* cursor: pointer; */
-    border: 1.5px solid black;
+    /* border: 1.5px solid black; */
     display: inline-flex;
-    border-radius: 50px;
-    /* text-align: center; */
-    box-shadow: 2px 3px 5px 2px rgba(0, 0, 0, 0.3);
+    /* background-color: red; */
+    /* border-radius: 50px; */
+    /* box-shadow: 2px 3px 5px 2px rgba(0, 0, 0, 0.3); */
 }
 
 .file-upload{
-    height: 100%;
-    width: 50%;
-    border-right: 1px solid black;
-    /* margin: auto; */
-    /* background-color: rgba(255, 0, 0, 0.632); */
-    /* border: 1px solid black; */
+    margin: auto;
+    height: 35px;
+    width: 35px;
+    /* border-right: 1px solid black; */
     text-align: center;
-    border-radius: 50px 0px 0px 50px;
+    border-radius: 50px;
+    border: 2px solid black;
     /* border-radius: 50px 0px 0px 50px; */
 }
 
 .file-upload:hover{
-    transition: background-color 0.5s;
-    background-color: rgba(180,185,175,255);
-    /* transform: scale(1.1); */
+    transition: transform 0.5s;
+    /* background-color: rgba(180,185,175,255); */
+    transform: scale(1.1);
 }
 
 .cam-upload{
-    height: 100%;
-    width: 50%;
-    /* margin: auto; */
+    height: 35px;
+    width: 35px;
+    margin: auto;
     /* background-color: rgba(255, 255, 0, 0.954); */
-    border-left: 1px solid black;
+    /* border-left: 1px solid black; */
     text-align: center;
+    border-radius: 50px;
+    border: 2px solid black;
     /* border-radius: 50px; */
     /* border-radius: 0px 50px 50px 0px; */
-    border-radius: 0px 50px 50px 0px;
+    /* border-radius: 0px 50px 50px 0px; */
 }
 
 .cam-upload:hover{
-    transition: background-color 0.5s;
-    background-color: rgba(180,185,175,255);
-    /* transform: scale(1.1); */
+    transition: transform 0.5s;
+    /* background-color: rgba(180,185,175,255); */
+    transform: scale(1.1);
+    /* border: 0px; */
 }
 
 .upload-icon {
-    margin-top: 10px;
+    margin-top: 3px;
     width: 25px;
     height: 25px;
 }
 
 .cam-upload-icon {
-    margin: 7px;
-    /* margin-top: 0px; */
-    width: 20px;
-    height: 20px;
+    margin-top: 3px;
+    width: 25px;
+    height: 25px;
 }
 
 .form-label{
@@ -343,14 +359,14 @@ p {
 }
 
 /* Upload Page Styles */
-#imagePreview {
+.ImagePreview {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin: 10px;
 }
 
-#imagePreview img {
+.ImagePreview img {
     max-width: 100px;
     max-height: 100px;
     object-fit: cover;
